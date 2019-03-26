@@ -60,7 +60,7 @@ app.get('/api/v1/todos/:id', (req, res) => {
 app.delete('/api/v1/todos/:id', (req, res) => {
     const id = parseInt(req.params.id, 10);
 
-    db.map((todo) => {
+    db.map((todo, index) => {
         if(todo.id === id) {
             db.splice(index, 1);
             return res.status(204).send({
