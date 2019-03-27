@@ -7,7 +7,6 @@ import getIndex from './app/getIndex'
 import post from './app/post'
 import put from './app/put'
 
-
 const app = express()
 
 app.use(bodyParser.json())
@@ -21,9 +20,11 @@ getIndex(app)
 
 const PORT = 5000
 
-const api = app.listen(PORT, () => {
-    // eslint-disable-next-line no-console
-    console.log(`Server running on ${PORT}`)
-})
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        // eslint-disable-next-line no-console
+        console.log(`Server running on ${PORT}`)
+    })
+}
 
-export default api
+export default app
