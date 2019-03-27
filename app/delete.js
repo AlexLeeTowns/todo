@@ -1,22 +1,30 @@
 import db from '../db/db'
 
-export default (app) => {
-  app.delete('/api/v1/todos/:id', (req, res) => {
-    const id = parseInt(req.params.id, 10)
+export const deleteTodo = (req) => {
+  const id = parseInt(req.params.id, 10)
 
-    db.map((todo, index) => {
-      if (todo.id === id) {
-        db.splice(index, 1)
-        return res.status(204).send({
-          success: 'true',
-          message: 'todo deleted succesfully',
-        })
-      }
-      return null
-    })
-    return res.status(404).send({
+  const match = db.find(r => r.id === id)
+  const matchIndex = db.findIndex(r => r.id === id)
+
+  if (!match) {
+    return {
+      status: 404,
       success: 'false',
-      message: 'todo does not exist',
-    })
+      message: `Could not find todo item with id ${req.params.id}`,
+    }
+  }
+
+  db.splice(matchIndex, 1)
+  return {
+    status: 204,
+    success: 'true',
+    message: 'todo deleted succesfully',
+  }
+}
+
+export const del = (app) => {
+  app.delete('/api/v1/todos/:id', (req, res) => {
+    const result = deleteTodo(req)
+    return res.status(result.status).send(result)
   })
 }

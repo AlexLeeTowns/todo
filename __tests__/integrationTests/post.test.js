@@ -1,6 +1,6 @@
 import request from 'supertest'
-import api from '../app'
-import makeTodo from './helpers/fixtureFactory/makeTodo'
+import api from '../../app'
+import makeTodo from '../../helpers/fixtureFactory/makeTodo'
 
 
 describe('Post request test suite', () => {

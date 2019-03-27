@@ -152,7 +152,7 @@ module.exports = {
   // testRegex: [],
 
   // This option allows the use of a custom results processor
-  // testResultsProcessor: null,
+  testResultsProcessor: './node_modules/jest-html-reporter',
 
   // This option allows use of a custom test runner
   // testRunner: "jasmine2",

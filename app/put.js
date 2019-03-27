@@ -1,48 +1,45 @@
 import db from '../db/db'
 
-export default (app) => {
+
+export const updateTodo = (req) => {
+  const id = parseInt(req.params.id, 10)
+  const match = db.find(r => r.id === id)
+  const matchIndex = db.findIndex(r => r.id === id)
+
+  if (!match) {
+    return {
+      status: 404,
+      success: 'false',
+      message: `Could not find todo item with id ${req.params.id}`,
+    }
+  } else if (!req.body.title) {
+    return {
+      status: 400,
+      success: 'false',
+      message: 'Title is required',
+    }
+  } else if (!req.body.description) {
+    return {
+      status: 400,
+      success: 'false',
+      message: 'Description is required',
+    }
+  }
+
+  const updatedTodo = Object.assign(match, req.body)
+  db[matchIndex] = updatedTodo
+
+  return {
+    status: 200,
+    success: 'true',
+    message: `Todo ${req.params.id} has been updated succesfully`,
+    data: updatedTodo,
+  }
+}
+
+export const put = (app) => {
   app.put('/api/v1/todos/:id', (req, res) => {
-    const id = parseInt(req.params.id, 10)
-    let todoFound
-    let itemIndex
-    db.map((todo, index) => {
-      if (todo.id === id) {
-        todoFound = todo
-        itemIndex = index
-      }
-
-      return null
-    })
-
-    if (!todoFound) {
-      return res.status(404).send({
-        succes: 'false',
-        message: 'todo not found',
-      })
-    } else if (!req.body.title) {
-      return res.status(400).send({
-        success: 'false',
-        message: 'title is required',
-      })
-    } else if (!req.body.description) {
-      return res.status(400).send({
-        succes: 'false',
-        message: 'description is required',
-      })
-    }
-
-    const updatedTodo = {
-      id: todoFound.id,
-      title: req.body.title || todoFound.title,
-      description: req.body.description || todoFound.description,
-    }
-
-    db.splice(itemIndex, 1, updatedTodo)
-
-    return res.status(200).send({
-      success: 'true',
-      message: 'todo updated succesfully',
-      todo: updatedTodo,
-    })
+    const result = updateTodo(req)
+    return res.status(result.status).send(result)
   })
 }

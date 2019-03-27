@@ -1,5 +1,5 @@
 import request from 'supertest'
-import api from '../app'
+import api from '../../app'
 
 describe('Tests for getting individual records', () => {
   test('I can GET a document by index', async () => {

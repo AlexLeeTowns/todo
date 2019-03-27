@@ -1,5 +1,5 @@
 import request from 'supertest'
-import api from '../app'
+import api from '../../app'
 
 describe('basic test for delete route', () => {
   test('I can delete a record with a delete request', async () => {

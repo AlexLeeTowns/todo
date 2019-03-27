@@ -1,11 +1,11 @@
 /* eslint-disable indent */
 import bodyParser from 'body-parser'
 import express from 'express'
-import del from './app/delete'
+import { del } from './app/delete'
 import get from './app/get'
-import getIndex from './app/getIndex'
-import post from './app/post'
-import put from './app/put'
+import { getIndex } from './app/getIndex'
+import { post } from './app/post'
+import { put } from './app/put'
 
 const app = express()
 
