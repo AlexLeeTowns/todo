@@ -42,7 +42,7 @@ export default (app) => {
     return res.status(200).send({
       success: 'true',
       message: 'todo updated succesfully',
-      updatedTodo,
+      todo: updatedTodo,
     })
   })
 }
