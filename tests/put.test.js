@@ -1,5 +1,6 @@
 import request from 'supertest'
 import api from '../app'
+import makeTodo from './helpers/fixtureFactory/makeTodo'
 
 describe('tests for PUT requests', () => {
   let original
@@ -12,7 +13,7 @@ describe('tests for PUT requests', () => {
   })
 
   test('I can make a put request', async () => {
-    const merged = Object.assign(data, { title: 'new title', description: 'new desc' })
+    const merged = Object.assign(data, makeTodo())
     const response = await request(api)
       .put(`/api/v1/todos/${data.id}`)
       .send(merged)
