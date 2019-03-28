@@ -2,7 +2,7 @@ import { createTodo } from '../../app/post'
 import makeTodo from '../../helpers/fixtureFactory/makeTodo'
 
 describe('test of post request validation rules', () => {
-  test('happy path', () => {
+  test('I can submit a POST request with valid title & body', () => {
     const req = {
       body: makeTodo(),
     }
