@@ -1,18 +1,15 @@
 import db from '../db/db'
+import parseId from '../helpers/parseId'
 
 export const deleteTodo = (req) => {
-  const id = parseInt(req.params.id, 10)
+  const error = parseId(req)
 
-  const match = db.find(r => r.id === id)
-  const matchIndex = db.findIndex(r => r.id === id)
-
-  if (!match) {
-    return {
-      status: 404,
-      success: 'false',
-      message: `Could not find todo item with id ${req.params.id}`,
-    }
+  if (error) {
+    return error
   }
+
+  const id = parseInt(req.params.id, 10)
+  const matchIndex = db.findIndex(r => r.id === id)
 
   db.splice(matchIndex, 1)
   return {

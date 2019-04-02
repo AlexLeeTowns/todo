@@ -1,28 +1,28 @@
 import db from '../db/db'
+import parseId from '../helpers/parseId'
 
 export const findIndex = (req) => {
-  const id = parseInt(req.params.id, 10)
-  const todo = db.find(r => r.id === id)
+  const error = parseId(req)
 
-  if (todo) {
-    return {
-      status: 200,
-      success: 'true',
-      message: 'todo retrieved succesfully',
-      data: todo,
-    }
+  if (error) {
+    return error
   }
-
+  const todo = db.find(r => r.id === parseInt(req.params.id, 10))
   return {
-    status: 404,
-    success: 'false',
-    message: `Could not find todo item with id ${req.params.id}`,
+    status: 200,
+    success: 'true',
+    message: 'todo retrieved succesfully',
+    data: todo,
   }
 }
 
 export const getIndex = (app) => {
-  app.get('/api/v1/todos/:id', (req, res) => {
-    const result = findIndex(req)
-    return res.status(result.status).send(result)
-  })
+  try {
+    app.get('/api/v1/todos/:id', (req, res) => {
+      const result = findIndex(req)
+      return res.status(result.status).send(result)
+    })
+  } catch (error) {
+    throw error
+  }
 }

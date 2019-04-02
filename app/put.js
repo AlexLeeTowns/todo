@@ -1,17 +1,12 @@
 import db from '../db/db'
-
+import parseId from '../helpers/parseId'
 
 export const updateTodo = (req) => {
-  const id = parseInt(req.params.id, 10)
-  const match = db.find(r => r.id === id)
-  const matchIndex = db.findIndex(r => r.id === id)
 
-  if (!match) {
-    return {
-      status: 404,
-      success: 'false',
-      message: `Could not find todo item with id ${req.params.id}`,
-    }
+
+  const error = parseId(req)
+  if (error) {
+    return error
   } else if (!req.body.title) {
     return {
       status: 400,
@@ -25,7 +20,9 @@ export const updateTodo = (req) => {
       message: 'Description is required',
     }
   }
-
+  const id = parseInt(req.params.id, 10)
+  const match = db.find(r => r.id === id)
+  const matchIndex = db.findIndex(r => r.id === id)
   const updatedTodo = Object.assign(match, req.body)
   db[matchIndex] = updatedTodo
 
