@@ -1,9 +1,7 @@
-import db from '../db/db'
-import parseId from '../helpers/parseId'
+import db from 'db/db'
+import parseId from 'helpers/parseId'
 
 export const updateTodo = (req) => {
-
-
   const error = parseId(req)
   if (error) {
     return error

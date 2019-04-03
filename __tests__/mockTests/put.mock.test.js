@@ -1,6 +1,6 @@
-import { updateTodo } from '../../app/put'
-import makeTodo from '../../helpers/fixtureFactory/makeTodo'
-import { createTodo } from '../../app/post'
+import { updateTodo } from 'app/put'
+import makeTodo from 'helpers/fixtureFactory/makeTodo'
+import { createTodo } from 'app/post'
 
 describe('PUT request tests', () => {
   test('Happy path', () => {

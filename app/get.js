@@ -1,4 +1,4 @@
-import db from '../db/db'
+import db from 'db/db'
 
 export default (app) => {
   app.get('/api/v1/todos', (req, res) => {

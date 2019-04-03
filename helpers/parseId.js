@@ -1,4 +1,4 @@
-import db from '../db/db'
+import db from 'db/db'
 
 export default (req) => {
   const id = parseInt(req.params.id, 10)

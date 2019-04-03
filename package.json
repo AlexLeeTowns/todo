@@ -11,8 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-plugin-module-resolver": "^3.2.0",
     "body-parser": "^1.18.3",
+    "depcheck": "^0.7.2",
     "express": "^4.16.4"
   },
   "devDependencies": {
@@ -20,7 +21,6 @@
     "@babel/core": "^7.4.0",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.2",
-    "babel-jest": "^24.5.0",
     "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-import-resolver-babel-module": "^4.0.0",
@@ -28,7 +28,6 @@
     "eslint-plugin-jest": "^21.24.1",
     "faker": "^4.1.0",
     "jest": "^24.5.0",
-    "jest-environment-jsdom": "^23.4.0",
     "jest-html-reporter": "^2.5.0",
     "supertest": "^4.0.2"
   },
@@ -40,7 +39,8 @@
       "airbnb-base"
     ],
     "plugins": [
-      "jest"
+      "jest",
+      "import/resolver"
     ],
     "rules": {
       "semi": [
@@ -62,9 +62,12 @@
     "testEnvironment": "node",
     "reporters": [
       "default",
-      ["./node_modules/jest-html-reporter", {
+      [
+        "./node_modules/jest-html-reporter",
+        {
           "pageTitle": "Test Report"
-      }]
-  ]
+        }
+      ]
+    ]
   }
 }

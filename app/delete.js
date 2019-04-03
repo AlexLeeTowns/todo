@@ -1,5 +1,5 @@
-import db from '../db/db'
-import parseId from '../helpers/parseId'
+import db from 'db/db'
+import parseId from 'helpers/parseId'
 
 export const deleteTodo = (req) => {
   const error = parseId(req)

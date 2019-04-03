@@ -1,6 +1,6 @@
-import { createTodo } from '../../app/post'
-import { deleteTodo } from '../../app/delete'
-import makeTodo from '../../helpers/fixtureFactory/makeTodo'
+import { createTodo } from 'app/post'
+import { deleteTodo } from 'app/delete'
+import makeTodo from 'helpers/fixtureFactory/makeTodo'
 
 describe('Test of deletion validation logic', () => {
   test('happy path', () => {

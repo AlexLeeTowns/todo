@@ -1,4 +1,4 @@
-import db from '../db/db'
+import db from 'db/db'
 
 export const createTodo = (req) => {
   if (!req.body.title) {

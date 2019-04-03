@@ -1,4 +1,4 @@
-import { findIndex } from '../../app/getIndex'
+import { findIndex } from 'app/getIndex'
 
 describe('Test of get index business logic', () => {
   test('I can find item with index 1', () => {
