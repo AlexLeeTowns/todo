@@ -1,9 +1,11 @@
 import request from 'supertest'
-import api from '../../app'
+import app from 'app'
+import db from 'db/db'
 
 describe('basic test for delete route', () => {
   test('I can delete a record with a delete request', async () => {
-    const response = await request(api).delete('/api/v1/todos/1')
+    const id = db[0].id.toString()
+    const response = await request(app).delete(`/api/v1/todos/${id}`)
     expect(response.status).toBe(204)
   })
 })
