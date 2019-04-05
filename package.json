@@ -24,7 +24,7 @@
     "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-import-resolver-babel-module": "^4.0.0",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jest": "^21.24.1",
     "faker": "^4.1.0",
     "jest": "^24.5.0",

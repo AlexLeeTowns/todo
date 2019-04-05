@@ -1,10 +1,12 @@
 import { findIndex } from 'app/getIndex'
+import db from 'db/db'
 
 describe('Test of get index business logic', () => {
-  test('I can find item with index 1', () => {
+  test('I can find a valid item', () => {
+    const id = db[0].id 
     const request = {
       params: {
-        id: 1,
+        id: id,
       },
     }
 
@@ -12,18 +14,5 @@ describe('Test of get index business logic', () => {
     expect(result.status).toBe(200)
     expect(result.success).toBe('true')
     expect(result.message).toBe('todo retrieved succesfully')
-  })
-
-  test('I cannot find item with index 1000', () => {
-    const request = {
-      params: {
-        id: 1000,
-      },
-    }
-
-    const result = findIndex(request)
-    expect(result.success).toBe('false')
-    expect(result.status).toBe(404)
-    expect(result.message).toBe(`Could not find todo item with id ${request.params.id}`)
   })
 })

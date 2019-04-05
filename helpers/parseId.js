@@ -2,7 +2,7 @@ import db from 'db/db'
 
 export default (req) => {
   const id = parseInt(req.params.id, 10)
-  if (!Number.isInteger) {
+  if (!Number.isInteger(id)) {
     return {
       status: 400,
       success: 'false',
